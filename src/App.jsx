@@ -10,7 +10,7 @@ const App = () => {
   // handle search function
   const handleSearch =(event) => {
     event.preventDefault()
-    console.log("submitted")
+    console.log(searchInput.current.value)
   }
 
   return (
@@ -21,6 +21,13 @@ const App = () => {
         <Form.Control type='search' placeholder='Type something to search...' className='search-input' ref={searchInput}
         />
       </Form>
+    </div>
+
+    <div className="filters">
+      <div>Nature</div>
+      <div>Birds</div>
+      <div>Cats</div>
+      <div>Shoes</div>
     </div>
   </div>
   )
