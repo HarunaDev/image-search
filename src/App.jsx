@@ -13,6 +13,9 @@ const App = () => {
     console.log(searchInput.current.value)
   }
 
+  // handle selection  function
+  const handleSelection = (selection) => searchInput.current.value = selection
+
   return (
   <div className='container'>
     <h1 className='title'>Image Search</h1>
@@ -23,11 +26,12 @@ const App = () => {
       </Form>
     </div>
 
+    {/* handle selection */}
     <div className="filters">
-      <div>Nature</div>
-      <div>Birds</div>
-      <div>Cats</div>
-      <div>Shoes</div>
+      <div onClick={() => handleSelection('nature')}>Nature</div>
+      <div onClick={() => handleSelection('birds')}>Birds</div>
+      <div onClick={() => handleSelection('cats')}>Cats</div>
+      <div onClick={() => handleSelection('shoes')}>Shoes</div>
     </div>
   </div>
   )
