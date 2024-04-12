@@ -4,13 +4,20 @@ import { Form } from 'react-bootstrap'
 import './index.css'
 
 const App = () => {
+  // set the search input to a useRef hook
   const searchInput = useRef(null);
+
+  // handle search function
+  const handleSearch =(event) => {
+    event.preventDefault()
+    console.log("submitted")
+  }
 
   return (
   <div className='container'>
     <h1 className='title'>Image Search</h1>
     <div className="search-section">
-      <Form>
+      <Form onSubmit={handleSearch}>
         <Form.Control type='search' placeholder='Type something to search...' className='search-input' ref={searchInput}
         />
       </Form>
