@@ -31,8 +31,10 @@ const App = () => {
   }
 
   // handle selection  function
-  const handleSelection = (selection) => searchInput.current.value = selection
-
+  const handleSelection = (selection) => {
+    searchInput.current.value = selection
+    fetchImages()
+  }
   return (
   <div className='container'>
     <h1 className='title'>Image Search</h1>
