@@ -12,7 +12,7 @@ const App = () => {
   // set the search input to a useRef hook
   const searchInput = useRef(null);
   const [images, setImages] = useState([])
-  const [setTotalPages] = useState(0)
+  const [totalPages, setTotalPages] = useState(0)
 
   // fetch image function
   const fetchImages = async () => {
@@ -21,6 +21,8 @@ const App = () => {
         `${API_URL}?query=${searchInput.current.value}&page=1&per_pages=${IMAGES_PER_PAGE}&client_id=${import.meta.env.VITE_API_KEY}`
       );
       console.log('data', data)
+      setImages(data.results)
+      setTotalPages(data.tota_pages)
     } catch (error) {
       console.log(error)
     }
@@ -54,6 +56,17 @@ const App = () => {
       <div onClick={() => handleSelection('birds')}>Birds</div>
       <div onClick={() => handleSelection('cats')}>Cats</div>
       <div onClick={() => handleSelection('shoes')}>Shoes</div>
+    </div>
+
+    <div className="images">
+      {images.map((image) => (
+          <img
+            key={image.id}
+            src={image.urls.small}
+            alt={image.alt_description}
+            className='image'
+          />
+      ))}
     </div>
   </div>
   )
