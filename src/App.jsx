@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 // eslint-disable-next-line no-unused-vars
 import axios from 'axios';
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { Form } from 'react-bootstrap'
 import './index.css'
 
@@ -11,6 +11,8 @@ const IMAGES_PER_PAGE = 20;
 const App = () => {
   // set the search input to a useRef hook
   const searchInput = useRef(null);
+  const [images, setImages] = useState([])
+  const [setTotalPages] = useState(0)
 
   // fetch image function
   const fetchImages = async () => {
@@ -28,6 +30,7 @@ const App = () => {
   const handleSearch =(event) => {
     event.preventDefault()
     console.log(searchInput.current.value)
+    fetchImages()
   }
 
   // handle selection  function
