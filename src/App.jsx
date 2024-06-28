@@ -6,7 +6,7 @@ import { Form } from 'react-bootstrap'
 import './index.css'
 
 const API_URL = 'https://api.unsplash.com/search/photos';
-const IMAGES_PER_PAGE = 20;
+const IMAGES_PER_PAGE = 30;
 
 const App = () => {
   // set the search input to a useRef hook
@@ -22,7 +22,7 @@ const App = () => {
       );
       console.log('data', data)
       setImages(data.results)
-      setTotalPages(data.tota_pages)
+      setTotalPages(30)
     } catch (error) {
       console.log(error)
     }
@@ -41,8 +41,11 @@ const App = () => {
     fetchImages()
   }
   return (
+  // Image search container
   <div className='container'>
     <h1 className='title'>Image Search</h1>
+
+    {/* {search input container} */}
     <div className="search-section">
       <Form onSubmit={handleSearch}>
         <Form.Control type='search' placeholder='Type something to search...' className='search-input' ref={searchInput}
