@@ -13,6 +13,7 @@ const App = () => {
   const searchInput = useRef(null);
   const [images, setImages] = useState([])
   const [totalPages, setTotalPages] = useState(0)
+  const [page, setPage] = useState(1)
 
   // fetch image function
   const fetchImages = async () => {
@@ -28,7 +29,7 @@ const App = () => {
     }
   }
 
-  // handle search function
+  // handle search function to get what the user entered in search bar
   const handleSearch =(event) => {
     event.preventDefault()
     console.log(searchInput.current.value)
