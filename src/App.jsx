@@ -2,7 +2,7 @@
 // eslint-disable-next-line no-unused-vars
 import axios from 'axios';
 import React, { useRef, useState } from 'react';
-import { Form } from 'react-bootstrap'
+import { Form, Button } from 'react-bootstrap'
 import './index.css'
 
 const API_URL = 'https://api.unsplash.com/search/photos';
@@ -74,8 +74,9 @@ const App = () => {
     </div>
 
     <div className="buttons">
-      {page > 1 && <button>Previous Page</button>}
-      {page < totalPages && <button>Next Page</button>}
+      {/* display previous if page is greater than 1 and next if page is less than total pages, meaning next will never show on the last page and previous will never show on the first page */}
+      {page > 1 && <Button>Previous Page</Button>}
+      {page < totalPages && <Button>Next Page</Button>}
     </div>
   </div>
   )
