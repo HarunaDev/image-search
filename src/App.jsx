@@ -19,7 +19,7 @@ const App = () => {
   const fetchImages = async () => {
     try {
       const { data } = await axios.get(
-        `${API_URL}?query=${searchInput.current.value}&page=1&per_pages=${IMAGES_PER_PAGE}&client_id=${import.meta.env.VITE_API_KEY}`
+        `${API_URL}?query=${searchInput.current.value}&page=${page}&per_pages=${IMAGES_PER_PAGE}&client_id=${import.meta.env.VITE_API_KEY}`
       );
       console.log('data', data)
       setImages(data.results)
@@ -71,6 +71,11 @@ const App = () => {
             className='image'
           />
       ))}
+    </div>
+
+    <div className="buttons">
+      {page > 1 && <button>Previous Page</button>}
+      {page < totalPages && <button>Next Page</button>}
     </div>
   </div>
   )
