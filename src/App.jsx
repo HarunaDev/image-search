@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 // eslint-disable-next-line no-unused-vars
 import axios from 'axios';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { Form, Button } from 'react-bootstrap'
 import './index.css'
 
@@ -17,10 +17,10 @@ const App = () => {
 
   useEffect(() => {
     fetchImages();
-  }, [page]);
+  }, [fetchImages, page]);
 
   // fetch image function
-  const fetchImages = async () => {
+  const fetchImages = useCallback(async () => {
     try {
       const { data } = await axios.get(
         `${API_URL}?query=${searchInput.current.value}&page=${page}&per_pages=${IMAGES_PER_PAGE}&client_id=${import.meta.env.VITE_API_KEY}`
@@ -31,7 +31,7 @@ const App = () => {
     } catch (error) {
       console.log(error)
     }
-  }
+  }, [page])
 
   const resetSearch = () =>{
     setPage(1)
