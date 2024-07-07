@@ -38,12 +38,14 @@ const App = () => {
     event.preventDefault()
     console.log(searchInput.current.value)
     fetchImages()
+    setPage(1)
   }
 
   // handle selection  function
   const handleSelection = (selection) => {
     searchInput.current.value = selection
     fetchImages()
+    setPage(1)
   }
 
   console.log(`page number ${page}`)
