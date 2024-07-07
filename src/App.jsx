@@ -33,19 +33,22 @@ const App = () => {
     }
   }
 
+  const resetSearch = () =>{
+    setPage(1)
+    fetchImages()
+  }
+
   // handle search function to get what the user entered in search bar
   const handleSearch =(event) => {
     event.preventDefault()
     console.log(searchInput.current.value)
-    fetchImages()
-    setPage(1)
+    resetSearch()
   }
 
   // handle selection  function
   const handleSelection = (selection) => {
     searchInput.current.value = selection
-    fetchImages()
-    setPage(1)
+    resetSearch()
   }
 
   console.log(`page number ${page}`)
