@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 // eslint-disable-next-line no-unused-vars
 import axios from 'axios';
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Form, Button } from 'react-bootstrap'
 import './index.css'
 
@@ -14,6 +14,10 @@ const App = () => {
   const [images, setImages] = useState([])
   const [totalPages, setTotalPages] = useState(0)
   const [page, setPage] = useState(1)
+
+  useEffect(() => {
+    fetchImages();
+  }, [page]);
 
   // fetch image function
   const fetchImages = async () => {
@@ -41,6 +45,8 @@ const App = () => {
     searchInput.current.value = selection
     fetchImages()
   }
+
+  console.log(`page number ${page}`)
   return (
   // Image search container
   <div className='container'>
