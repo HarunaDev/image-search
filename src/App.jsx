@@ -14,6 +14,7 @@ const App = () => {
   const [images, setImages] = useState([])
   const [totalPages, setTotalPages] = useState(0)
   const [page, setPage] = useState(1)
+  const [loading, setLoading] = useState(false)
 
   // fetch image function
   const fetchImages = useCallback(async () => {
@@ -34,7 +35,7 @@ const App = () => {
 
   useEffect(() => {
     fetchImages();
-  }, [fetchImages, page]);
+  }, [fetchImages]);
 
   const resetSearch = () =>{
     setPage(1)
