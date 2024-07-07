@@ -15,23 +15,26 @@ const App = () => {
   const [totalPages, setTotalPages] = useState(0)
   const [page, setPage] = useState(1)
 
-  useEffect(() => {
-    fetchImages();
-  }, [fetchImages, page]);
-
   // fetch image function
   const fetchImages = useCallback(async () => {
     try {
-      const { data } = await axios.get(
-        `${API_URL}?query=${searchInput.current.value}&page=${page}&per_pages=${IMAGES_PER_PAGE}&client_id=${import.meta.env.VITE_API_KEY}`
-      );
-      console.log('data', data)
-      setImages(data.results)
-      setTotalPages(30)
+
+      if (searchInput.current.value){
+        const { data } = await axios.get(
+          `${API_URL}?query=${searchInput.current.value}&page=${page}&per_pages=${IMAGES_PER_PAGE}&client_id=${import.meta.env.VITE_API_KEY}`
+        );
+        console.log('data', data)
+        setImages(data.results)
+        setTotalPages(30)
+      }
     } catch (error) {
       console.log(error)
     }
   }, [page])
+
+  useEffect(() => {
+    fetchImages();
+  }, [fetchImages, page]);
 
   const resetSearch = () =>{
     setPage(1)
