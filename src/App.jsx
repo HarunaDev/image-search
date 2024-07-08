@@ -1,16 +1,21 @@
 /* eslint-disable no-unused-vars */
 // eslint-disable-next-line no-unused-vars
+
+// import necessary packages for application
 import axios from 'axios';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { Form, Button } from 'react-bootstrap'
 import './index.css'
 
+// store data in variables
 const API_URL = 'https://api.unsplash.com/search/photos';
 const IMAGES_PER_PAGE = 30;
 
 const App = () => {
   // set the search input to a useRef hook
   const searchInput = useRef(null);
+
+  // states to handle data change in application
   const [images, setImages] = useState([])
   const [totalPages, setTotalPages] = useState(0)
   const [page, setPage] = useState(1)
@@ -42,6 +47,7 @@ const App = () => {
     fetchImages();
   }, [fetchImages]);
 
+  // resert search function 
   const resetSearch = () =>{
     setPage(1)
     fetchImages()
@@ -82,6 +88,7 @@ const App = () => {
       <div onClick={() => handleSelection('shoes')}>Shoes</div>
     </div>
 
+    {/* loading text */}
     {loading ? (<p className='loading'>Loading...</p>
     ) : (
       <>
