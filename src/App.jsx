@@ -15,21 +15,26 @@ const App = () => {
   const [totalPages, setTotalPages] = useState(0)
   const [page, setPage] = useState(1)
   const [loading, setLoading] = useState(false)
+  const [errorMsg, setErrorMsg] = useState('')
 
   // fetch image function
   const fetchImages = useCallback(async () => {
     try {
-
       if (searchInput.current.value){
+        setErrorMsg('');
+        setLoading(true);
         const { data } = await axios.get(
           `${API_URL}?query=${searchInput.current.value}&page=${page}&per_pages=${IMAGES_PER_PAGE}&client_id=${import.meta.env.VITE_API_KEY}`
         );
         console.log('data', data)
         setImages(data.results)
         setTotalPages(30)
+        setLoading(false)
       }
     } catch (error) {
+      setErrorMsg('Error fetching images. Try again later.');
       console.log(error)
+      setLoading(false)
     }
   }, [page])
 
