@@ -77,22 +77,27 @@ const App = () => {
       <div onClick={() => handleSelection('shoes')}>Shoes</div>
     </div>
 
-    <div className="images">
-      {images.map((image) => (
-          <img
-            key={image.id}
-            src={image.urls.small}
-            alt={image.alt_description}
-            className='image'
-          />
-      ))}
-    </div>
+    {loading ? (<p className='loading'>Loading...</p>
+    ) : (
+      <>
+        <div className="images">
+          {images.map((image) => (
+              <img
+                key={image.id}
+                src={image.urls.small}
+                alt={image.alt_description}
+                className='image'
+              />
+            ))}
+        </div>
 
-    <div className="buttons">
-      {/* display previous if page is greater than 1 and next if page is less than total pages, meaning next will never show on the last page and previous will never show on the first page */}
-      {page > 1 && <Button onClick={() => setPage(page - 1)}>Previous Page</Button>}
-      {page < totalPages && <Button onClick={() => setPage(page + 1)}>Next Page</Button>}
-    </div>
+        <div className="buttons">
+          {/* display previous if page is greater than 1 and next if page is less than total pages, meaning next will never show on the last page and previous will never show on the first page */}
+          {page > 1 && <Button onClick={() => setPage(page - 1)}>Previous Page</Button>}
+          {page < totalPages && <Button onClick={() => setPage(page + 1)}>Next Page</Button>}
+        </div>
+      </>
+    )}
   </div>
   )
 };
